@@ -25,6 +25,9 @@ public class ProfileResource {
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance get(@PathParam("id") Long id) {
         Profile profile = Profile.findById(id);
+        if (profile == null) {
+            throw new NotFoundException("Profile not found for id " + id);
+        }
         var currentProfileDTO = ProfileMapper.INSTANCE.profileToProfileDTO(profile);
         return Templates.profile(currentProfileDTO);
     }
