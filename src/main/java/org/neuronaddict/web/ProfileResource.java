@@ -1,4 +1,4 @@
-package org.neuronaddict;
+package org.neuronaddict.web;
 
 import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateInstance;
