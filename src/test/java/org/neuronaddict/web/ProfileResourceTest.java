@@ -34,18 +34,21 @@ public class ProfileResourceTest {
     @Test
     public void testUpdateProfile() {
 
-        given()
+        String location = given()
                 .formParam("name", "Alice Updated")
                 .formParam("email", "alice.updated@example.com")
                 .formParam("address", "Updated Wonderland")
                 .formParam("phone", "999-999-999")
                 .formParam("role", "Admin")
+                .redirects().follow(false)
                 .when().post("/profile/update/1")
                 .then()
-                .statusCode(303); // Redirect
+                .statusCode(303)
+                .extract().header("Location");
+        ; // Redirect
 
         given()
-                .when().get("/profile/1")
+                .when().get(location)
                 .then()
                 .statusCode(200)
                 .body(containsString("Alice Updated"))
