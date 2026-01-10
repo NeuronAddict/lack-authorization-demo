@@ -11,6 +11,7 @@ repositories {
 val quarkusPlatformGroupId: String by project
 val quarkusPlatformArtifactId: String by project
 val quarkusPlatformVersion: String by project
+val mapstructVersion = "1.6.3"
 
 dependencies {
     implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
@@ -18,7 +19,16 @@ dependencies {
     implementation("io.quarkus:quarkus-rest-qute")
     implementation("io.quarkus:quarkus-oidc")
     implementation("io.quarkus:quarkus-arc")
+
+    implementation("io.quarkus:quarkus-hibernate-orm-panache")
+    implementation("io.quarkus:quarkus-jdbc-postgresql")
+
+    implementation("org.mapstruct:mapstruct:${mapstructVersion}")
+    annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
+
     testImplementation("io.quarkus:quarkus-junit5")
+    testAnnotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
+
 }
 
 group = "org.neuronaddict"
