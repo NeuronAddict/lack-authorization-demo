@@ -1,32 +1,69 @@
-{#let name=http:param('name', 'Qute')}
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Hello {name}</title>
-    <style>
-        body {
-            background-color: #000;
-            color: #fff;
-        }
+{#include base.html}
+    {#title}User Profile - {name ?: "Guest"}{/title}
 
-        h1 {
-            color: #4695EB;
-            font-size: 6vw;
-        }
+    {#content}
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-white mb-2">Welcome, {name ?: "User"}!</h1>
+            <p class="text-slate-500">Here is your structured information for today.</p>
+        </div>
 
-        h1 b {
-            color: #be9100;
-        }
+        <!-- Structured Information Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <!-- Card 1 -->
+            <div class="bg-slate-900 p-6 rounded-xl border border-slate-800 shadow-sm hover:border-slate-700 transition">
+                <h3 class="text-slate-500 text-sm font-medium uppercase tracking-wider mb-2">Account Status</h3>
+                <p class="text-2xl font-semibold text-emerald-400">Active</p>
+            </div>
+            <!-- Card 2 -->
+            <div class="bg-slate-900 p-6 rounded-xl border border-slate-800 shadow-sm hover:border-slate-700 transition">
+                <h3 class="text-slate-500 text-sm font-medium uppercase tracking-wider mb-2">Total Requests</h3>
+                <p class="text-2xl font-semibold text-white">1,284</p>
+            </div>
+            <!-- Card 3 -->
+            <div class="bg-slate-900 p-6 rounded-xl border border-slate-800 shadow-sm hover:border-slate-700 transition">
+                <h3 class="text-slate-500 text-sm font-medium uppercase tracking-wider mb-2">Uptime</h3>
+                <p class="text-2xl font-semibold text-sky-400">99.9%</p>
+            </div>
+        </div>
 
-        p {
-            font-size: 2vw;
-        }
-    </style>
-</head>
-<body>
-<h1>Hello <b>{name}</b></h1>
-
-<p>Create your Web page using Quarkus & Qute</p>
-</body>
-</html>
+        <div class="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden">
+            <div class="px-6 py-4 border-b border-slate-800 bg-slate-900/50">
+                <h2 class="text-lg font-semibold text-white">Recent Activity</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-slate-950/50 text-slate-400 text-xs uppercase">
+                    <tr>
+                        <th class="px-6 py-3">Event</th>
+                        <th class="px-6 py-3">Timestamp</th>
+                        <th class="px-6 py-3 text-right">Status</th>
+                    </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800">
+                    <tr class="hover:bg-slate-800/30 transition">
+                        <td class="px-6 py-4 font-medium text-white">Login Attempt</td>
+                        <td class="px-6 py-4 text-sm">2026-01-10 22:45:01</td>
+                        <td class="px-6 py-4 text-right">
+                            <span class="px-2 py-1 text-xs font-semibold bg-emerald-950 text-emerald-400 rounded-full border border-emerald-900">Success</span>
+                        </td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/30 transition">
+                        <td class="px-6 py-4 font-medium text-white">Database Backup</td>
+                        <td class="px-6 py-4 text-sm">2026-01-10 20:00:15</td>
+                        <td class="px-6 py-4 text-right">
+                            <span class="px-2 py-1 text-xs font-semibold bg-emerald-950 text-emerald-400 rounded-full border border-emerald-900">Completed</span>
+                        </td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/30 transition">
+                        <td class="px-6 py-4 font-medium text-white">System Update</td>
+                        <td class="px-6 py-4 text-sm">2026-01-09 14:22:33</td>
+                        <td class="px-6 py-4 text-right">
+                            <span class="px-2 py-1 text-xs font-semibold bg-sky-950 text-sky-400 rounded-full border border-sky-900">Minor</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {/content}
+{/include}
