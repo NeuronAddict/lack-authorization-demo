@@ -20,6 +20,7 @@ public class ProfileResourceTest {
                 .statusCode(200)
                 .body(containsString("User Profile"))
                 .body(containsString("alice"))
+                .body(containsString("55000.0 €"))
                 .body(containsString("hello <span class=\"text-white font-medium capitalize\">alice</span>"));
     }
 

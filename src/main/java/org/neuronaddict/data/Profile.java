@@ -11,4 +11,10 @@ public class Profile extends PanacheEntity {
     public String phone;
     public boolean active;
     public String role;
+    public Double salary;
+    public String annualEvaluation;
+
+    public static Profile findByName(String name) {
+        return Profile.find("name", name).firstResult();
+    }
 }
