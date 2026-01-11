@@ -1,4 +1,4 @@
-package org.neuronaddict.web;
+package org.neuronaddict.data;
 
 public enum Grade {
 
@@ -11,10 +11,6 @@ public enum Grade {
     }
 
     private final String value;
-
-    public String getValue() {
-        return value;
-    }
 
     @Override
     public String toString() {
