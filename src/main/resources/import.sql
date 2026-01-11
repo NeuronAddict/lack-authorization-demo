@@ -14,6 +14,8 @@ INSERT INTO Message (id, content, timestamp, profile_id)
 VALUES (nextval('Message_SEQ'), 'Quand est ce que mon augmentation sera présente sur ma fiche de paie ?',
         CURRENT_TIMESTAMP, 1);
 INSERT INTO Message (id, content, timestamp, profile_id)
-VALUES (nextval('Message_SEQ'), 'Deuxième message pour Alice', CURRENT_TIMESTAMP, 1);
+VALUES (nextval('Message_SEQ'),
+        'Je souhaite négocier un départ pour raisons personnelles. Mon équipe n''est pas encore au courant.',
+        CURRENT_TIMESTAMP, 1);
 INSERT INTO Message (id, content, timestamp, profile_id)
 VALUES (nextval('Message_SEQ'), 'Combien de congés me reste-t-il cette année ?', CURRENT_TIMESTAMP, 2);
