@@ -22,10 +22,15 @@
             </a>
             <span class="text-xl font-bold text-white">Dashboard</span>
         </div>
-        {#if profile}
+        {#if (profile.orEmpty)}
         <div class="text-slate-400 text-sm">
             hello <span class="text-white font-medium capitalize">{accessToken.name}</span>
+            <a href="/logout" class="text-white hover:underline">Logout</a>
         </div>
+        {#else}
+            <div class="text-slate-400 text-sm">
+                <a href="/login" class="text-white hover:underline">Login</a>
+            </div>
         {/if}
     </header>
 
