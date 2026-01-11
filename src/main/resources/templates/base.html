@@ -24,7 +24,7 @@
         </div>
         {#if (profile.orEmpty)}
         <div class="text-slate-400 text-sm">
-            hello <span class="text-white font-medium capitalize">{accessToken.name}</span>
+            hello <span class="text-white font-medium capitalize">{inject:currentUser}</span>
         </div>
         {#else}
             <div class="text-slate-400 text-sm">

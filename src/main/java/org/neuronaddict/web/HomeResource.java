@@ -16,20 +16,20 @@ public class HomeResource {
 
     @CheckedTemplate
     static class Templates {
-        public static native TemplateInstance home(ProfileDTO profile, JsonWebToken accessToken);
+        public static native TemplateInstance home(ProfileDTO profile);
     }
 
     @GET
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance getEval() {
+    public TemplateInstance home() {
         if (accessToken.getName() == null) {
-            return Templates.home(null, null);
+            return Templates.home(null);
         }
         Profile profile = Profile.findByName(accessToken.getName());
         if (profile == null) {
             throw new NotFoundException("Profile not found for name " + accessToken.getName());
         }
         var profileDTO = ProfileMapper.INSTANCE.profileToProfileDTO(profile);
-        return Templates.home(profileDTO, accessToken);
+        return Templates.home(profileDTO);
     }
 }

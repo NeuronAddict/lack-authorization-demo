@@ -5,9 +5,13 @@ import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.ws.rs.core.UriInfo;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 
 @RequestScoped
 public class TemplateGlobals {
+
+    @Inject
+    JsonWebToken accessToken;
 
     @Inject
     UriInfo uriInfo;
@@ -16,5 +20,11 @@ public class TemplateGlobals {
     @Named("currentPath")
     public String currentPath() {
         return uriInfo.getPath();
+    }
+
+    @Produces
+    @Named("currentUser")
+    public String currentUser() {
+        return accessToken.getName();
     }
 }
