@@ -38,10 +38,15 @@
         <!-- Sidebar Menu -->
         <aside class="w-64 bg-slate-900 border-r border-slate-800 overflow-y-auto hidden md:block">
             <nav class="p-4 space-y-2">
-                <a href="#" class="block px-4 py-2 rounded-lg bg-indigo-600 text-white font-medium">Home</a>
-                <a href="/profile" class="block px-4 py-2 rounded-lg bg-indigo-600 text-white font-medium">Mes informations</a>
-                <a href="/eval" class="block px-4 py-2 rounded-lg hover:bg-slate-800 hover:text-slate-200 transition">Mes evaluations</a>
-                <a href="/messages" class="block px-4 py-2 rounded-lg hover:bg-slate-800 hover:text-slate-200 transition">Envoyer un message</a>
+                <a href="/" class="block px-4 py-2 rounded-lg bg-indigo-600 text-white font-medium">Home</a>
+                {#if profile}
+                <a href="/profile/{profile.id}" class="block px-4 py-2 rounded-lg bg-indigo-600 text-white font-medium">Mes informations</a>
+                <a href="/eval/{profile.id}" class="block px-4 py-2 rounded-lg hover:bg-slate-800 hover:text-slate-200 transition">Mes evaluations</a>
+                <a href="/messages/{profile.id}" class="block px-4 py-2 rounded-lg hover:bg-slate-800 hover:text-slate-200 transition">Envoyer un message</a>
+                <a href="/logout" class="block px-4 py-2 rounded-lg hover:bg-slate-800 hover:text-slate-200 transition">Logout</a>
+                {#else}
+                    <a href="/login" class="block px-4 py-2 rounded-lg bg-indigo-600 text-white font-medium">Login</a>
+                {/if}
             </nav>
         </aside>
 
