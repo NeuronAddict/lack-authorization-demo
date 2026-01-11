@@ -1,4 +1,5 @@
 package org.neuronaddict.web;
 
-public record ProfileDTO(Long id, String name, String email, String address, String phone, boolean active, String role, Double salary, String annualEvaluation) {
+public record ProfileDTO(Long id, String name, String email, String address, String phone, boolean active,
+                         String role, String grade, Double salary, String annualEvaluation) {
 }

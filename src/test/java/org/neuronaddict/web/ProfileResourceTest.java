@@ -5,7 +5,7 @@ import io.quarkus.test.security.TestSecurity;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.containsString;
 
 @QuarkusTest
 public class ProfileResourceTest {
@@ -20,6 +20,7 @@ public class ProfileResourceTest {
                 .statusCode(200)
                 .body(containsString("User Profile"))
                 .body(containsString("alice"))
+                .body(containsString("Manager"))
                 .body(containsString("55000.0 €"))
                 .body(containsString("hello <span class=\"text-white font-medium capitalize\">alice</span>"));
     }

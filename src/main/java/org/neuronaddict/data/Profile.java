@@ -11,6 +11,7 @@ public class Profile extends PanacheEntity {
     public String phone;
     public boolean active;
     public String role;
+    public String grade;
     public Double salary;
     public String annualEvaluation;
 
