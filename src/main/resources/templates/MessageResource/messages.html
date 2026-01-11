@@ -1,0 +1,37 @@
+{#include base.html}
+    {#title}Messages pour {profile.name}{/title}
+
+    {#content}
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-sm mb-8">
+            <h1 class="text-2xl font-bold text-white mb-6">Envoyez un message, vous recevrez une réponse par mail de
+                notre service RH.</h1>
+
+            <form action="/messages/{profile.id}" method="POST" class="mb-8">
+                <div class="mb-4">
+                    <label for="content" class="block text-sm font-medium text-slate-300 mb-2">Nouveau message</label>
+                    <textarea id="content" name="content" rows="3" required
+                              class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2 text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition"
+                              placeholder="Écrivez votre message ici..."></textarea>
+                </div>
+                <button type="submit"
+                        class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-6 rounded-lg transition">
+                    Envoyer
+                </button>
+            </form>
+
+            <div class="space-y-4">
+                <h2 class="text-xl font-semibold text-white mb-4">Historique de vos messages</h2>
+                {#if messages.isEmpty}
+                    <p class="text-slate-500 italic">Aucun message pour le moment.</p>
+                {#else}
+                    {#for message in messages}
+                        <div class="bg-slate-950 border border-slate-800 rounded-lg p-4">
+                            <p class="text-white mb-2">{message.content}</p>
+                            <p class="text-slate-500 text-xs">{message.timestamp.format('dd/MM/yyyy HH:mm')}</p>
+                        </div>
+                    {/for}
+                {/if}
+            </div>
+        </div>
+    {/content}
+{/include}
