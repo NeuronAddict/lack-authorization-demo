@@ -27,7 +27,8 @@ public class MessageResourceTest {
                 .when().get("/messages/1")
                 .then()
                 .statusCode(200)
-                .body(containsString("Envoyez un message, vous recevrez une réponse par mail de notre service RH."))
+                .body(containsString("Envoyez un message, vous recevrez une réponse par mail de\n" +
+                        "                notre service RH."))
                 .body(containsString("Quand est ce que mon augmentation sera présente sur ma fiche de paie ?"));
     }
 
