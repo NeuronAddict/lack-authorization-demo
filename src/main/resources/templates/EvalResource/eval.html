@@ -1,0 +1,48 @@
+{#include base.html}
+{#title}Evaluation - {profile.name}{/title}
+
+{#content}
+<div class="mb-8">
+    <h1 class="text-3xl font-bold text-white mb-2">Evaluation Annuelle</h1>
+    <p class="text-slate-500">Consultez votre évaluation de performance annuelle.</p>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Profile Summary Card -->
+    <div class="lg:col-span-1">
+        <div class="bg-slate-900 rounded-xl border border-slate-800 p-6 flex flex-col items-center text-center">
+            <div class="w-32 h-32 bg-slate-800 rounded-full flex items-center justify-center mb-4 border-2 border-indigo-500/50">
+                <span class="text-4xl font-bold text-indigo-400">{profile.name.substring(0, 1)}</span>
+            </div>
+            <h2 class="text-xl font-bold text-white">{profile.name}</h2>
+            <p class="text-slate-500 mb-4">{profile.role}</p>
+        </div>
+    </div>
+
+    <!-- Evaluation Details -->
+    <div class="lg:col-span-2">
+        <div class="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden">
+            <div class="px-6 py-4 border-b border-slate-800 bg-slate-900/50">
+                <h3 class="text-lg font-semibold text-white">Commentaires de l'évaluateur</h3>
+            </div>
+            <div class="p-6 space-y-6">
+                <div>
+                    <label class="block text-xs font-medium text-slate-500 uppercase tracking-wider mb-2">Evaluation Annuelle 2025</label>
+                    <div class="bg-slate-950 border border-slate-800 rounded-lg p-4 text-slate-300 leading-relaxed italic">
+                        {#if profile.annualEvaluation}
+                            "{profile.annualEvaluation}"
+                        {#else}
+                            Aucune évaluation disponible pour le moment.
+                        {/if}
+                    </div>
+                </div>
+                
+                <div class="pt-4 border-t border-slate-800 text-sm text-slate-500">
+                    <p>Ces informations sont strictement confidentielles et destinées uniquement au salarié et à la direction des ressources humaines.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/content}
+{/include}
