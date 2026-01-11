@@ -3,7 +3,6 @@ package org.neuronaddict.web;
 import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateInstance;
 
-import io.quarkus.security.Authenticated;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
@@ -15,14 +14,13 @@ import org.neuronaddict.data.Profile;
 import java.net.URI;
 
 @Path("/profile")
-@Authenticated
 public class ProfileResource {
 
     @Inject
     JsonWebToken accessToken;
 
     @CheckedTemplate
-    public static class Templates {
+    static class Templates {
         public static native TemplateInstance profile(ProfileDTO profile, JsonWebToken accessToken);
         public static native TemplateInstance edit(ProfileDTO profile, JsonWebToken accessToken);
     }
