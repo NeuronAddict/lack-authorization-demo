@@ -1,6 +1,7 @@
 package org.neuronaddict.web;
 
 import io.quarkus.test.junit.QuarkusTest;
+import io.quarkus.test.security.TestSecurity;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -10,6 +11,7 @@ import static org.hamcrest.CoreMatchers.containsString;
 public class ProfileResourceTest {
 
     @Test
+    @TestSecurity(user = "alice", roles = "admin")
     public void testProfilePage() {
 
         given()
@@ -21,6 +23,7 @@ public class ProfileResourceTest {
     }
 
     @Test
+    @TestSecurity(user = "alice", roles = "admin")
     public void testEditProfilePage() {
 
         given()
@@ -32,6 +35,7 @@ public class ProfileResourceTest {
     }
 
     @Test
+    @TestSecurity(user = "alice", roles = "admin")
     public void testUpdateProfile() {
 
         String location = given()
@@ -39,19 +43,17 @@ public class ProfileResourceTest {
                 .formParam("email", "alice.updated@example.com")
                 .formParam("address", "Updated Wonderland")
                 .formParam("phone", "999-999-999")
-                .formParam("role", "Admin")
                 .redirects().follow(false)
                 .when().post("/profile/update/1")
                 .then()
                 .statusCode(303)
                 .extract().header("Location");
-        ; // Redirect
 
         given()
                 .when().get(location)
                 .then()
                 .statusCode(200)
                 .body(containsString("Alice Updated"))
-                .body(containsString("Admin"));
+                .body(containsString("alice.updated@example.com"));
     }
 }

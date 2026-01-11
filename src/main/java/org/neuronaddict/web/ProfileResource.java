@@ -3,6 +3,7 @@ package org.neuronaddict.web;
 import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateInstance;
 
+import io.quarkus.security.Authenticated;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -12,6 +13,7 @@ import org.neuronaddict.data.Profile;
 import java.net.URI;
 
 @Path("/profile")
+@Authenticated
 public class ProfileResource {
 
     @CheckedTemplate
@@ -50,15 +52,13 @@ public class ProfileResource {
                          @FormParam("name") String name,
                          @FormParam("email") String email,
                          @FormParam("address") String address,
-                         @FormParam("phone") String phone,
-                         @FormParam("role") String role) {
+                         @FormParam("phone") String phone) {
 
         Profile profile = Profile.findById(id);
         profile.name = name;
         profile.email = email;
         profile.address = address;
         profile.phone = phone;
-        profile.role = role;
         profile.persist();
 
         return Response.seeOther(URI.create("/profile/" + id)).build();
