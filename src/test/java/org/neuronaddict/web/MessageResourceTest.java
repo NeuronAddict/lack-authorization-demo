@@ -11,15 +11,24 @@ import static org.hamcrest.CoreMatchers.containsString;
 public class MessageResourceTest {
 
     @Test
+    public void testRedirectLogin() {
+
+        given()
+                .redirects().follow(false)
+                .when().get("/messages/1")
+                .then()
+                .statusCode(302);
+    }
+
+    @Test
     @TestSecurity(user = "alice", roles = "admin")
     public void testMessagesPage() {
         given()
                 .when().get("/messages/1")
                 .then()
                 .statusCode(200)
-                .body(containsString("Messages de alice"))
-                .body(containsString("Premier message pour Alice"))
-                .body(containsString("Deuxième message pour Alice"));
+                .body(containsString("Envoyez un message, vous recevrez une réponse par mail de notre service RH."))
+                .body(containsString("Quand est ce que mon augmentation sera présente sur ma fiche de paie ?"));
     }
 
     @Test

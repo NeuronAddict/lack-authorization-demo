@@ -11,6 +11,16 @@ import static org.hamcrest.CoreMatchers.containsString;
 public class EvalResourceTest {
 
     @Test
+    public void testRedirectLogin() {
+
+        given()
+                .redirects().follow(false)
+                .when().get("/eval/1")
+                .then()
+                .statusCode(302);
+    }
+
+    @Test
     @TestSecurity(user = "alice", roles = "admin")
     public void testEvalPage() {
 
