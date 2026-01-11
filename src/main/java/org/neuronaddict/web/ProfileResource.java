@@ -4,10 +4,12 @@ import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateInstance;
 
 import io.quarkus.security.Authenticated;
+import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.neuronaddict.data.Profile;
 
 import java.net.URI;
@@ -15,6 +17,9 @@ import java.net.URI;
 @Path("/profile")
 @Authenticated
 public class ProfileResource {
+
+    @Inject
+    JsonWebToken accessToken;
 
     @CheckedTemplate
     public static class Templates {
@@ -59,6 +64,7 @@ public class ProfileResource {
         profile.email = email;
         profile.address = address;
         profile.phone = phone;
+        profile.role = accessToken.getGroups().iterator().next();
         profile.persist();
 
         return Response.seeOther(URI.create("/profile/" + id)).build();

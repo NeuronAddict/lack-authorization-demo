@@ -54,6 +54,7 @@ public class ProfileResourceTest {
                 .then()
                 .statusCode(200)
                 .body(containsString("Alice Updated"))
+                .body(containsString("admin"))
                 .body(containsString("alice.updated@example.com"));
     }
 }
