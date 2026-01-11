@@ -23,8 +23,8 @@ public class ProfileResource {
 
     @CheckedTemplate
     public static class Templates {
-        public static native TemplateInstance profile(ProfileDTO profile);
-        public static native TemplateInstance edit(ProfileDTO profile);
+        public static native TemplateInstance profile(ProfileDTO profile, JsonWebToken accessToken);
+        public static native TemplateInstance edit(ProfileDTO profile, JsonWebToken accessToken);
     }
 
     @GET
@@ -36,7 +36,7 @@ public class ProfileResource {
             throw new NotFoundException("Profile not found for id " + id);
         }
         var currentProfileDTO = ProfileMapper.INSTANCE.profileToProfileDTO(profile);
-        return Templates.profile(currentProfileDTO);
+        return Templates.profile(currentProfileDTO, accessToken);
     }
 
     @GET
@@ -45,7 +45,7 @@ public class ProfileResource {
     public TemplateInstance edit(@PathParam("id") Long id) {
         Profile profile = Profile.findById(id);
         var currentProfileDTO = ProfileMapper.INSTANCE.profileToProfileDTO(profile);
-        return Templates.edit(currentProfileDTO);
+        return Templates.edit(currentProfileDTO, accessToken);
     }
 
     @POST

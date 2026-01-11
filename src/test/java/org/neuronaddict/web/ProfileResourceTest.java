@@ -5,7 +5,7 @@ import io.quarkus.test.security.TestSecurity;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.*;
 
 @QuarkusTest
 public class ProfileResourceTest {
@@ -19,7 +19,8 @@ public class ProfileResourceTest {
                 .then()
                 .statusCode(200)
                 .body(containsString("User Profile"))
-                .body(containsString("Alice"));
+                .body(containsString("alice"))
+                .body(containsString("hello <span class=\"text-white font-medium capitalize\">alice</span>"));
     }
 
     @Test
@@ -31,7 +32,7 @@ public class ProfileResourceTest {
                 .then()
                 .statusCode(200)
                 .body(containsString("Edit Profile"))
-                .body(containsString("Alice"));
+                .body(containsString("alice"));
     }
 
     @Test
@@ -56,5 +57,18 @@ public class ProfileResourceTest {
                 .body(containsString("Alice Updated"))
                 .body(containsString("admin"))
                 .body(containsString("alice.updated@example.com"));
+    }
+
+    @Test
+    @TestSecurity(user = "alice", roles = "admin")
+    public void testWrongProfilePage() {
+
+        given()
+                .when().get("/profile/2")
+                .then()
+                .statusCode(200)
+                .body(containsString("User Profile"))
+                .body(containsString("bob"))
+                .body(containsString("hello <span class=\"text-white font-medium capitalize\">alice</span>"));
     }
 }
