@@ -24,6 +24,7 @@ dependencies {
     implementation("io.quarkus:quarkus-jdbc-postgresql")
 
     implementation("org.mapstruct:mapstruct:${mapstructVersion}")
+    implementation("io.quarkus:quarkus-container-image-docker")
     annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}")
 
     testImplementation("io.quarkus:quarkus-test-security-oidc")
