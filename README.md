@@ -1,8 +1,18 @@
 # noauth
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+## create nginx config
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+in folder nginx (and choose password):
+
+```
+$ htpasswd -c -b -B .htpasswd alice
+$ htpasswd -cbB .htpasswd alice
+$ htpasswd -cB .htpasswd alice
+$ htpasswd -B .htpasswd bob
+$ htpasswd -B .htpasswd eve
+```
+
+# quarkus original doc
 
 ## Running the application in dev mode
 
