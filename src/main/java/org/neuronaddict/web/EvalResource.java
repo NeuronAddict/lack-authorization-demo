@@ -2,7 +2,6 @@ package org.neuronaddict.web;
 
 import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateInstance;
-import io.quarkus.security.Authenticated;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -14,7 +13,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 @Path("/eval")
-@Authenticated
 public class EvalResource {
 
     @Inject
