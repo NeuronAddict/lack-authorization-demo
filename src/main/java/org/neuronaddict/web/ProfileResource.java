@@ -8,7 +8,7 @@ import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import org.eclipse.microprofile.jwt.JsonWebToken;
+import org.neuronaddict.auth.IdentityProvider;
 import org.neuronaddict.data.Profile;
 
 import java.net.URI;
@@ -17,7 +17,7 @@ import java.net.URI;
 public class ProfileResource {
 
     @Inject
-    JsonWebToken accessToken;
+    IdentityProvider identityProvider;
 
     @CheckedTemplate
     static class Templates {
@@ -62,7 +62,7 @@ public class ProfileResource {
         profile.email = email;
         profile.address = address;
         profile.phone = phone;
-        profile.role = accessToken.getGroups().iterator().next();
+        profile.role = identityProvider.role();
         profile.persist();
 
         return Response.seeOther(URI.create("/profile/" + id)).build();

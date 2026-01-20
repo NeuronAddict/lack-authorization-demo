@@ -11,7 +11,7 @@ import org.eclipse.microprofile.jwt.JsonWebToken;
 public class TemplateGlobals {
 
     @Inject
-    JsonWebToken accessToken;
+    IdentityProvider identityProvider;
 
     @Inject
     UriInfo uriInfo;
@@ -25,6 +25,6 @@ public class TemplateGlobals {
     @Produces
     @Named("currentUser")
     public String currentUser() {
-        return accessToken.getName();
+        return identityProvider.currentName();
     }
 }
