@@ -5,7 +5,7 @@ import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.ws.rs.core.UriInfo;
-import org.eclipse.microprofile.jwt.JsonWebToken;
+import org.neuronaddict.auth.IdentityProvider;
 
 @RequestScoped
 public class TemplateGlobals {
