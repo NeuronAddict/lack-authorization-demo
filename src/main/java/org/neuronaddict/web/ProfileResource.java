@@ -2,7 +2,6 @@ package org.neuronaddict.web;
 
 import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateInstance;
-
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
@@ -12,6 +11,7 @@ import org.neuronaddict.auth.IdentityProvider;
 import org.neuronaddict.data.Profile;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 
 @Path("/profile")
 public class ProfileResource {
@@ -23,6 +23,11 @@ public class ProfileResource {
     static class Templates {
         public static native TemplateInstance profile(ProfileDTO profile);
         public static native TemplateInstance edit(ProfileDTO profile);
+    }
+
+    @GET
+    public Response profile() throws URISyntaxException {
+        return Response.seeOther(new URI("/profile/" + identityProvider.currentId())).build();
     }
 
     @GET
