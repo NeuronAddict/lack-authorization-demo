@@ -16,4 +16,9 @@ public class HeaderIdentityProvider implements IdentityProvider {
     public String currentName() {
         return request.getHeader("X-User");
     }
+
+    @Override
+    public String role() {
+        return "admin";
+    }
 }

@@ -12,6 +12,14 @@ $ htpasswd -B .htpasswd bob
 $ htpasswd -B .htpasswd eve
 ```
 
+## start nginx version
+
+In project folder:
+
+```
+$ ./gradlew clean build -Dquarkus.profile=noauth && docker compose up
+```
+
 # quarkus original doc
 
 ## Running the application in dev mode

@@ -1,0 +1,51 @@
+{#include base.html}
+    {#title}Admin - Toutes les évaluations{/title}
+
+    {#content}
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-white mb-2">Évaluations</h1>
+            <p class="text-slate-500">Vue d'ensemble de toutes les évaluations annuelles des employés.</p>
+            <p class="text-slate-500">Attention: ces informations sont confidentielles.</p>
+        </div>
+
+        <div class="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                    <tr class="border-b border-slate-800 bg-slate-900/50">
+                        <th class="px-6 py-4 text-xs font-medium text-slate-500 uppercase tracking-wider">Employé</th>
+                        <th class="px-6 py-4 text-xs font-medium text-slate-500 uppercase tracking-wider">Rôle</th>
+                        <th class="px-6 py-4 text-xs font-medium text-slate-500 uppercase tracking-wider">Évaluation
+                            Annuelle
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800">
+                    {#for p in profiles}
+                        <tr class="hover:bg-slate-800/50 transition-colors">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-slate-800 rounded-full flex items-center justify-center border border-indigo-500/30">
+                                        <span class="text-xs font-bold text-indigo-400">{p.name.substring(0, 1).toUpperCase()}</span>
+                                    </div>
+                                    <span class="text-sm font-medium text-white">{p.name}</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-400">
+                                {p.role}
+                            </td>
+                            <td class="px-6 py-4 text-sm text-slate-300">
+                                {#if p.annualEvaluation}
+                                    <p class="line-clamp-2 italic">"{p.annualEvaluation}"</p>
+                                {#else}
+                                    <span class="text-slate-600">Aucune évaluation</span>
+                                {/if}
+                            </td>
+                        </tr>
+                    {/for}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {/content}
+{/include}

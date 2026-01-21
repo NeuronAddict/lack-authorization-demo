@@ -10,7 +10,5 @@ public interface IdentityProvider {
 
     String currentName();
 
-    default String role() {
-        return "user";
-    }
+    String role();
 }
