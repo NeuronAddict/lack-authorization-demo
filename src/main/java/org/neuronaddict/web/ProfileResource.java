@@ -31,6 +31,25 @@ public class ProfileResource {
     }
 
     @GET
+    @Path("/user/")
+    @Produces(MediaType.TEXT_HTML)
+    public Response userRedirect() throws URISyntaxException {
+        return Response.seeOther(new URI("/profile/user/" + identityProvider.currentName())).build();
+    }
+
+    @GET
+    @Path("/user/{user}")
+    @Produces(MediaType.TEXT_HTML)
+    public TemplateInstance get(@PathParam("user") String user) {
+        Profile profile = Profile.findByName(user);
+        if (profile == null) {
+            throw new NotFoundException("Profile not found for name " + user);
+        }
+        var currentProfileDTO = ProfileMapper.INSTANCE.profileToProfileDTO(profile);
+        return Templates.profile(currentProfileDTO);
+    }
+
+    @GET
     @Path("/{id}")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance get(@PathParam("id") Long id) {

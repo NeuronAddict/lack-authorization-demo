@@ -3,7 +3,7 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - "8081:8080"
+      - "8080:8080"
     depends_on:
       - quarkus
     volumes:
@@ -19,7 +19,7 @@ services:
       QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://postgres:5432/quarkus_db
       QUARKUS_DATASOURCE_USERNAME: quarkus
       QUARKUS_DATASOURCE_PASSWORD: quarkus
-      QUARKUS_PROFILE: noauth
+      QUARKUS_PROFILE: noauth,nginx
 
 
   postgres:
