@@ -1,5 +1,7 @@
 # noauth
 
+Vidéo : https://youtu.be/lbT39ec0jP0
+
 ## create nginx config
 
 in folder nginx (and choose password):
